@@ -1,3 +1,5 @@
+// Å×½ºÆ®
+
 #include "flowing_dress_game.h"
 #include "modules.h"
 
