@@ -34,7 +34,7 @@ void food_data(int* n, int* ran);
 void show_title();
 void select_menu(int, int, int, int, int);
 int player_dead(int* ran, int* n);
-void show_weight(int, int);
+void show_weight();
 void game_start();
 void end_game();
 void show_menu();

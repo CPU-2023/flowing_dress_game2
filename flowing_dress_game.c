@@ -96,10 +96,10 @@ MYSQL* conn;
 MYSQL_RES* res;
 MYSQL_ROW row;
 
-char* server = "127.0.0.1";
-char* user = "root";
-char* password = "mirim";
-char* database = "cpu";
+char* d_server = "127.0.0.1";
+char* d_user = "root";
+char* d_password = "mirim";
+char* d_database = "cpu";
 
 
 int main()
@@ -123,7 +123,7 @@ int main()
 			conn = mysql_init(NULL);
 
 			// MySQL 서버에 연결
-			if (!mysql_real_connect(conn, server, user, password, database, 0, NULL, 0)) {
+			if (!mysql_real_connect(conn, d_server, d_user, d_password, d_database, 0, NULL, 0)) {
 				fprintf(stderr, "%s\n", mysql_error(conn));
 				exit(1);
 			}
@@ -221,7 +221,7 @@ void show_rank()
 	conn = mysql_init(NULL);
 
 	// MySQL 서버에 연결
-	if (!mysql_real_connect(conn, server, user, password, database, 0, NULL, 0)) {
+	if (!mysql_real_connect(conn, d_server, d_user, d_password, d_database, 0, NULL, 0)) {
 		fprintf(stderr, "%s\n", mysql_error(conn));
 		exit(1);
 	}
@@ -259,9 +259,12 @@ void show_rank()
 	// 결과 출력
 	gotoxy(x, y);
 	int i = 1;
+	int cnt = 0;
 	while ((row = mysql_fetch_row(res)) != NULL) {
+		if (cnt > 7) break;
 		gotoxy(x, y++);
 		printf("%d\t %s   %s\n", i++, row[0], row[1]);
+		cnt++;
 	}
 
 	// 연결 해제
@@ -707,7 +710,7 @@ void show_title()
 
 }
 
-void show_weight(int score)
+void show_weight()
 {
 	int x = 80, y = 3;
 
